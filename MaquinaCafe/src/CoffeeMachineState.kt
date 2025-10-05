@@ -1,6 +1,13 @@
-    sealed class CoffeeMachineState {
+sealed class CoffeeMachineState {
     object Idle : CoffeeMachineState()
-    object MakingCoffee : CoffeeMachineState()
-    data class ServingCoffee(val brand: String) : CoffeeMachineState()
+    object checkingStatus : CoffeeMachineState()
+    object checkingCoffee : CoffeeMachineState()
+    object checkingWater : CoffeeMachineState()
+    object checkingSugar : CoffeeMachineState()
+    object checkingMilk : CoffeeMachineState()
+    object checkingCup : CoffeeMachineState()
+    object checkingSticks : CoffeeMachineState()
+    data class orderCoffee(val c: Cafe) : CoffeeMachineState()
+    object Clean : CoffeeMachineState()
     data class Error(val message: String) : CoffeeMachineState()
 }
