@@ -10,6 +10,6 @@ abstract class Coffee(
     val amountOfCup: Int = 1,
 )
 
-class Americano : Coffee("Americano", 200, 100, 10, 0)
 class Expresso : Coffee("Expresso", 0, 200, 30, 0)
 class Machiatto : Coffee("Machiatto", 0, 100, 10, 100)
+class Americano : Coffee("Americano", 200, 100, 10, 0)
