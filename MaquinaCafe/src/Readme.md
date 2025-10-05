@@ -2,7 +2,9 @@
 
 ## Paso 1
 
-Primero define los valores de cada ingredente que vamos a utilizar en el cafe
+Creamos las clases ```CoffeeMachine```, ```CoffeeMachineState```, ```Interface``` y ```Coffee```
+
+Defino los valores de cada ingredente que vamos a utilizar en el cafe
 ```
 object CoffeeMachine {
     var currentState: CoffeeMachineState = CoffeeMachineState.Idle
@@ -15,3 +17,4 @@ object CoffeeMachine {
     var Sticks = 10
 ```
 
+Seguidamente creamos una funcion

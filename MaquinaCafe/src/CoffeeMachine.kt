@@ -1,3 +1,13 @@
+package CoffeeMachine
+
+import CoffeeMachine.CoffeeMachine.CoffeeMachineState
+import CoffeeMachine.CoffeeMachine.Interface
+
+fun main() {
+    CoffeMachine.starMachine()
+
+}
+
 object CoffeeMachine {
     var currentState: CoffeeMachineState = CoffeeMachineState.Idle
     var Interfaz = Interface()
