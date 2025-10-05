@@ -1,4 +1,4 @@
-package CoffeMachine
+package CoffeeMachine
 
 abstract class Coffee(
     val name: String,
