@@ -1,6 +1,6 @@
 object CoffeeMachine {
     var currentState: CoffeeMachineState = CoffeeMachineState.Idle
-    var Interfaz = Interfaz()
+    var Interfaz = Interface()
     var Coffee = 300
     var Water = 600
     var Sugar = 200
@@ -76,7 +76,7 @@ object CoffeeMachine {
                     Interfaz.mostrarMensaje("Comprobando leche")
                     repeat (3) {
                         Thread.sleep(2000)
-                        interfaz.mostrarMensaje(".")
+                        Interfaz.mostrarMensaje(".")
                     }
                     val MilkPositive = true
                     if (MilkPositive){
@@ -130,7 +130,7 @@ object CoffeeMachine {
 
                 is CoffeeMachineState.Clean {
                     Interfaz.mostrarMensaje("Espere porfavor...")
-                    Thread.sleep(1000)
+                    Thread.sleep(2000)
                     Coffee = 300
                     Water = 600
                     Sugar = 200
