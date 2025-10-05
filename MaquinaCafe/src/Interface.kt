@@ -6,14 +6,14 @@ open class Interface {
     }
 
     open fun CoffeeType(): Coffee {
-        var typeCoffee: Coffee = Americano()
+        var typeCoffee: Coffee = Machiatto()
         var analisis: Boolean
 
         do {
             analisis = true
-            println("\n-----------------------------------------")
-            println("\n      BIENVENIDO       ")
-            println("\n-----------------------------------------")
+            mostrarMensaje("\n-----------------------------------------")
+            mostrarMensaje("\n      BIENVENIDO       ")
+            mostrarMensaje("\n-----------------------------------------")
             mostrarMensaje("\nCafes disponibles actualmente:\n ")
             mostrarMensaje("\n1. Machiatto \n")
             mostrarMensaje("\n2. Expresso \n")
