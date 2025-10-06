@@ -1,10 +1,9 @@
 ### EXPLICACION
 
 ## Paso 1
-
 Creamos las clases ```CoffeeMachine```, ```CoffeeMachineState```, ```Interface``` y ```Coffee```
 
-Defino los valores de cada ingredente que vamos a utilizar en el cafe
+Defino los valores de cada ingrediente que vamos a utilizar en el cafe
 ```
 object CoffeeMachine {
     var currentState: CoffeeMachineState = CoffeeMachineState.Idle
@@ -18,9 +17,9 @@ object CoffeeMachine {
 ```
 
 Seguidamente creamos una funcion llamada ```startMachine``` y hacemos un while (true) para que el programa entre en un bucle en el cual siempre se repita constantemente.
-Dentro de ese bucle haremos que checkee que hay ingredientes para hacer el cafe que queremos y haremos un checkeo de cada de cada uno para al terminar con un ```orderCoffee``` con un mensaje que ponga que todo esta correcto.
+Dentro de ese bucle haremos que checkee que hay ingredientes para hacer el cafe que queremos y haremos un checkeo de cada uno para al terminar con un ```orderCoffee``` salga mensaje que ponga que todo esta correcto.
 
-Cuando este bucle termina la maquina vuelve al Idle con un Clean 
+Cuando este bucle termina la maquina vuelve al Idle haciendo un Clean 
 ```
 is CoffeeMachineState.Clean {
                     Interfaz.mostrarMensaje("Espere porfavor...")
@@ -97,4 +96,9 @@ while (!analisis)
 ```
 
 Por ultimo en caso de error se abre la funcion ```MostrarMensajeError``` 
+
+
+### Esquema 
+Aqui esta el programa en un esquema mas simplificado y el como funcionaria su estructura base 
+
 
