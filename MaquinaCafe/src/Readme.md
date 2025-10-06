@@ -1,104 +1,136 @@
-### EXPLICACION
+# Maquina de Café - Kotlin
 
-## Paso 1
-Creamos las clases ```CoffeeMachine```, ```CoffeeMachineState```, ```Interface``` y ```Coffee```
-
-Defino los valores de cada ingrediente que vamos a utilizar en el cafe
-```
-object CoffeeMachine {
-    var currentState: CoffeeMachineState = CoffeeMachineState.Idle
-    var Interfaz = Interfaz()
-    var Coffee = 300
-    var Water = 600
-    var Sugar = 200
-    var Milk = 300
-    var Cup = 10
-    var Sticks = 10
-```
-
-Seguidamente creamos una funcion llamada ```startMachine``` y hacemos un while (true) para que el programa entre en un bucle en el cual siempre se repita constantemente.
-Dentro de ese bucle haremos que checkee que hay ingredientes para hacer el cafe que queremos y haremos un checkeo de cada uno para al terminar con un ```orderCoffee``` salga mensaje que ponga que todo esta correcto.
-
-Cuando este bucle termina la maquina vuelve al Idle haciendo un Clean 
-```
-is CoffeeMachineState.Clean {
-                    Interfaz.mostrarMensaje("Espere porfavor...")
-                    Thread.sleep(2000)
-                    Coffee = 300
-                    Water = 600
-                    Sugar = 200
-                    Milk = 300
-                    Sticks = 5
-                    Cup = 5
-                    currentState = CoffeeMachineState.Idle
-                }
-```
-y en caso de que haya Error en el proceso de preparacion salta el mensaje de error, volviendo al Idle nuevamente
-```
-is CoffeeMachineState.Error {
-                    val pb = (currentState as CoffeeMachineState.Error).message
-                    Interfaz.MostrarMensajeError(pb)
-                    Thread.sleep(2000)
-                    currentState = CoffeeMachineState.Clean
-}
-```
-
-## Paso 2
-
-En otra clase aparte que llame ```CoffeeMachineState``` hice un object de cada ckeckeo de cada ingrediente y un data class para oderCoffee y Error ya que estos recogen datos.
-```
-sealed class CoffeeMachineState {
-    object Idle : CoffeeMachineState()
-    object checkingStatus : CoffeeMachineState()
-    object checkingCoffee : CoffeeMachineState()
-    object checkingWater : CoffeeMachineState()
-    object checkingSugar : CoffeeMachineState()
-    object checkingMilk : CoffeeMachineState()
-    object checkingCup : CoffeeMachineState()
-    object checkingSticks : CoffeeMachineState()
-    data class orderCoffee(val pw: Coffee) : CoffeeMachineState()
-    object Clean : CoffeeMachineState()
-    data class Error(val message: String) : CoffeeMachineState()
-}
-```
-
-Cree otra clase llamada ```CoffeeMachine``` donde definiremos los valores String e Int de cada ingrediente (en el caso del vaso y el palillo solo pondremos que se delimite a uno) y en la otra parte pondremos las cantidades de dichos ingredintes en el cafe asignado
-```
-abstract class Coffee(
-    val name: String,
-    val amountOfWater: Int,
-    val amountOfCoffee: Int,
-    val amountOfSugar: Int,
-    val amountOfMilk: Int,
-    val amountOfSticks: Int = 1,
-    val amountOfCup: Int = 1,
-)
-
-class Machiatto : Coffee("Machiatto", 0, 100, 10, 100)
-class Expresso : Coffee("Expresso", 0, 200, 30, 0)
-class Americano : Coffee("Americano", 200, 100, 10, 0)
-```
-
-Por ultimo creamos la clase Interface para aque el usuario eliga el cafe que quiere pillar y dentro del else saltara el aviso de que no hemos ingresado los valores correctos y que lo volvamos a intentar
-```
-else {analisis = false
-                    mostrarError("Ahora por favor mete un numero valido (1-3)")
-                    println("Intenta de nuevo (ㆆ_ㆆ)")
-```
-
-Creamos un var analisis de tipo boolean para que dentro del while(!analisis) salga un mensaje de que se a terminado la operacion
-```
-while (!analisis)
-        println("\nPreparando tu café...\n")
-        Thread.sleep(2000)
-        println("\nTu café está listo!(っ◔◡◔)っ\n")
-        return typeCoffee
-```
-
-Por ultimo en caso de error se abre la funcion ```MostrarMensajeError``` 
+Este proyecto simula el funcionamiento de una máquina de café básica en consola, desarrollada en Kotlin. Permite verificar los recursos, seleccionar tipos de café y manejar errores de forma automática
 
 
-### Esquema 
-Aqui esta el programa en un esquema mas simplificado y el como funcionaria su estructura base 
+## Características
 
+- Verificación de los recursos necesarios para preparar café: café, agua, azúcar, leche, vasos y palillos.
+
+- Selección de diferentes tipos de café: Machiatto, Expresso y Americano.
+
+- Manejo de errores si algún recurso no está disponible.
+
+- Limpieza automática de la máquina después de un error.
+
+- Simulación de preparación de café con mensajes y pausas
+
+
+## Estructura del proyecto
+
+### 1. ```CoffeeMachine```
+
+Objeto singleton que representa la máquina de café.
+
+Propiedades principales:
+
+- ```currentState```: Estado actual de la máquina, basado en CoffeeMachineState.
+
+- ```Interfaz```: Objeto que maneja la interacción con el usuario.
+
+- ```Coffee, Water, Sugar, Milk, Sticks, Cup```: Recursos disponibles en la máquina.
+
+Método principal:
+
+- ```startMachine()```: Controla el flujo principal de la máquina, incluyendo:
+
+  1. Comprobación de estado.
+
+  2. Verificación de recursos.
+
+  3. Solicitud de selección de café.
+
+  4. Manejo de errores y limpieza.
+
+
+### 2. ```CoffeeMachineState```
+
+Clase sellada que define los posibles estados de la máquina:
+
+- ```Idle```: Máquina inactiva.
+
+- ```checkingStatus```: Verificación inicial del estado de la máquina.
+
+- ```checkingCoffee```: Verificación de café.
+
+- ```checkingWater```: Verificación de agua.
+
+- ```checkingSugar```: Verificación de azúcar.
+
+- ```checkingMilk```: Verificación de leche.
+
+- ```checkingCup```: Verificación de vasos.
+
+- ```checkingSticks```: Verificación de palillos.
+
+- ```orderCoffee```: Estado de selección de café.
+
+- ```Clean```: Estado de limpieza de la máquina.
+
+- ```Error(message: String)```: Estado de error, mostrando un mensaje de fallo.
+
+
+### 3. ```Coffee```
+
+Clase abstracta que representa un tipo de café.
+
+Propiedades:
+
+- ```name```: Nombre del café.
+
+- ```amountOfWater, amountOfCoffee, amountOfSugar, amountOfMilk```: Cantidad de cada ingrediente.
+
+- ```amountOfSticks```: Cantidad de palillos necesarios (por defecto 1).
+
+- ```amountOfCup```: Cantidad de vasos necesarios (por defecto 1).
+
+
+Subclases disponibles:
+
+- ```Machiatto```: 0 ml agua, 100 g café, 10 g azúcar, 100 ml leche.
+
+- ```Expresso```: 0 ml agua, 200 g café, 30 g azúcar, 0 ml leche.
+
+- ```Americano```: 200 ml agua, 100 g café, 10 g azúcar, 0 ml leche.
+
+
+### 4. ```Interface```
+
+Clase que maneja la interacción con el usuario.
+
+Métodos principales:
+
+- ```mostrarMensaje(mensaje: String)```: Muestra un mensaje en la consola.
+
+- ```CoffeeType()```: Solicita al usuario seleccionar un tipo de café y devuelve el objeto correspondiente.
+
+- ```MostrarMensajeError(mensaje: String)```: Muestra un mensaje de error en la consola.
+
+Flujo de selección de café:
+
+1. Muestra un menú con los cafés disponibles.
+
+2. El usuario ingresa un número correspondiente al café deseado.
+
+3. Valida la entrada y solicita reintento si el valor es inválido.
+
+4. Simula la preparación del café con mensajes y pausas.
+
+### Cómo ejecutar el programa
+
+1. Clona el repositorio o copia el código en tu proyecto de Kotlin.
+
+2. Ejecuta el archivo ```main.kt```.
+
+3. La máquina iniciará automáticamente y comprobará los recursos.
+
+4. Selecciona el tipo de café cuando se te solicite ingresando un número del 1 al 3.
+
+5. Si algún recurso no está disponible, se mostrará un mensaje de error y la máquina se limpiará automáticamente.
+
+6. La máquina queda lista para un nuevo ciclo de preparación.
+
+## Esquema
+
+![img.png](img.png)
 
