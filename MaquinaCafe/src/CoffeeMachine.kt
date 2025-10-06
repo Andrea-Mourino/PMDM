@@ -6,12 +6,40 @@ fun main() {
     CoffeeMachine.startMachine()
 
 }
-
+/**
+ * Objeto singleton que representa la máquina de café.
+ *
+ * Esta clase controla el flujo principal de la máquina de café:
+ * - Verifica los recursos (café, agua, azúcar, leche, vasos y palillos).
+ * - Permite seleccionar el tipo de café.
+ * - Maneja errores y limpieza de la máquina.
+ *
+ * @property currentState Estado actual de la máquina de café.
+ * @property Interfaz Interfaz de usuario para mostrar mensajes y seleccionar café.
+ */
 object CoffeeMachine {
+    /** Estado actual de la máquina de café. */
     var currentState: CoffeeMachineState = CoffeeMachineState.Idle
+
+    /** Interfaz de usuario para mostrar mensajes y opciones al usuario. */
     var Interfaz = Interface()
 
-
+    /**
+     * Método principal que inicia el ciclo de la máquina de café.
+     *
+     * Este método ejecuta un bucle infinito que:
+     * 1. Comprueba el estado de la máquina.
+     * 2. Verifica los recursos disponibles.
+     * 3. Solicita al usuario el tipo de café que desea.
+     * 4. Maneja errores y realiza la limpieza de la máquina si es necesario.
+     *
+     * El flujo de estados es el siguiente:
+     * - Idle -> checkingStatus -> checkingCoffee -> checkingWater -> checkingSugar
+     * -> checkingMilk -> checkingCup -> checkingSticks -> orderCoffee -> Idle
+     *
+     * En caso de error en cualquier recurso, la máquina pasa al estado Error,
+     * muestra el mensaje correspondiente y luego se limpia automáticamente.
+     */
     fun startMachine() {
         while (true) {
             when (currentState) {
