@@ -1,3 +1,5 @@
+import MaquinaCafe.Coffee
+
 sealed class CoffeeMachineState {
     object Idle : CoffeeMachineState()
     object checkingStatus : CoffeeMachineState()
@@ -7,7 +9,7 @@ sealed class CoffeeMachineState {
     object checkingMilk : CoffeeMachineState()
     object checkingCup : CoffeeMachineState()
     object checkingSticks : CoffeeMachineState()
-    data class orderCoffee(val pw: Coffee) : CoffeeMachineState()
+    object orderCoffee : CoffeeMachineState()
     object Clean : CoffeeMachineState()
     data class Error(val message: String) : CoffeeMachineState()
 }

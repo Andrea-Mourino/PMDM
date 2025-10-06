@@ -1,4 +1,4 @@
-package CoffeeMachine
+package MaquinaCafe
 
 open class Interface {
     open fun mostrarMensaje(mensaje: String) {
@@ -12,7 +12,7 @@ open class Interface {
         do {
             analisis = true
             mostrarMensaje("\n-----------------------------------------")
-            mostrarMensaje("\n      BIENVENIDO       ")
+            mostrarMensaje("\n               BIENVENIDO                ")
             mostrarMensaje("\n-----------------------------------------")
             mostrarMensaje("\nCafes disponibles actualmente:\n ")
             mostrarMensaje("\n1. Machiatto \n")
@@ -23,20 +23,20 @@ open class Interface {
 
             when (type) {
 
-                1 {mostrarMensaje("Buena eleccion: Machiatto")
+                1 ->{mostrarMensaje("Buena eleccion: Machiatto")
                     typeCoffee = Machiatto()
                 }
 
-                2 {mostrarMensaje("Buena eleccion: Expresso")
+                2 ->{mostrarMensaje("Buena eleccion: Expresso")
                     typeCoffee = Expresso()
                 }
 
-                3 {mostrarMensaje("Buena eleccion: Americano")
+                3 ->{mostrarMensaje("Buena eleccion: Americano")
                     typeCoffee = Americano()
                 }
-                else {analisis = false
-                    mostrarError("Ahora por favor mete un numero valido (1-3)")
-                    println("Intenta de nuevo (ㆆ_ㆆ)")
+                else ->{analisis = false
+                    MostrarMensajeError("Ahora por favor mete un numero valido (1-3)")
+                    println("\nIntenta de nuevo (ㆆ_ㆆ)")
                 }
             }
         } while (!analisis)

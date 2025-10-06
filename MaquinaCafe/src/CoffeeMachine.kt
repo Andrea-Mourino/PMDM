@@ -1,38 +1,32 @@
-package CoffeeMachine
+package MaquinaCafe
 
-import CoffeeMachine.CoffeeMachine.CoffeeMachineState
-import CoffeeMachine.CoffeeMachine.Interface
+import CoffeeMachineState
 
 fun main() {
-    CoffeMachine.starMachine()
+    CoffeeMachine.startMachine()
 
 }
 
 object CoffeeMachine {
     var currentState: CoffeeMachineState = CoffeeMachineState.Idle
     var Interfaz = Interface()
-    var Coffee = 300
-    var Water = 600
-    var Sugar = 200
-    var Milk = 300
-    var Sticks = 5
-    var Cup = 5
+
 
     fun startMachine() {
         while (true) {
             when (currentState) {
-                is CoffeeMachineState.Idle {
+                is CoffeeMachineState.Idle ->{
                     currentState = CoffeeMachineState.checkingStatus
-                    Interfaz.mostrarMensaje("Comenzando analisis de la máquina de café")
+                    Interfaz.mostrarMensaje("\nComenzando analisis de la máquina de café")
                 }
 
-                is CoffeeMachineState.checkingStatus {
+                is CoffeeMachineState.checkingStatus ->{
                     currentState = CoffeeMachineState.checkingCoffee
-                    Interfaz.mostrarMensaje("Empezando a verificar los elementos")
+                    Interfaz.mostrarMensaje("\nEmpezando a verificar los elementos")
                 }
 
-                is CoffeeMachineState.checkingCoffee {
-                    Interfaz.mostrarMensaje("Comprobando café")
+                is CoffeeMachineState.checkingCoffee ->{
+                    Interfaz.mostrarMensaje("\nComprobando café")
                     repeat (3) {
                         Thread.sleep(2000)
                         Interfaz.mostrarMensaje(".")
@@ -41,15 +35,15 @@ object CoffeeMachine {
                     val CoffeePositive = true
                     if (CoffeePositive) {
                         currentState = CoffeeMachineState.checkingWater
-                        Interfaz.mostrarMensaje("Café correcto")
+                        Interfaz.mostrarMensaje("\nCafé correcto")
                     }
                     else {
-                        currentState = CoffeeMachineState.Error("No queda cafe")
+                        currentState = CoffeeMachineState.Error("\nNo queda cafe")
                     }
                 }
 
-                is CoffeeMachineState.checkingWater {
-                    Interfaz.mostrarMensaje("Comprobando agua")
+                is CoffeeMachineState.checkingWater ->{
+                    Interfaz.mostrarMensaje("\nComprobando agua")
                     repeat (3) {
                         Thread.sleep(2000)
                         Interfaz.mostrarMensaje(".")
@@ -59,15 +53,15 @@ object CoffeeMachine {
 
                     if (WaterPositive){
                         currentState = CoffeeMachineState.checkingSugar
-                        Interfaz.mostrarMensaje("Agua correcto")
+                        Interfaz.mostrarMensaje("\nAgua correcto")
                     }
                     else {
                         currentState = CoffeeMachineState.Error("No queda agua")
                     }
                 }
 
-                is CoffeeMachineState.checkingSugar {
-                    Interfaz.mostrarMensaje("Comprobando azucar")
+                is CoffeeMachineState.checkingSugar ->{
+                    Interfaz.mostrarMensaje("\nComprobando azucar")
                     repeat (3) {
                         Thread.sleep(2000)
                         Interfaz.mostrarMensaje(".")
@@ -75,15 +69,15 @@ object CoffeeMachine {
                     val SugarPositive = true
                     if (SugarPositive){
                         currentState = CoffeeMachineState.checkingMilk
-                        Interfaz.mostrarMensaje("Azucar correcto")
+                        Interfaz.mostrarMensaje("\nAzucar correcto")
                     }
                     else {
-                        currentState = CoffeeMachineState.Error("No queda azucar")
+                        currentState = CoffeeMachineState.Error("\nNo queda azucar")
                     }
                 }
 
-                is CoffeeMachineState.checkingMilk {
-                    Interfaz.mostrarMensaje("Comprobando leche")
+                is CoffeeMachineState.checkingMilk ->{
+                    Interfaz.mostrarMensaje("\nComprobando leche")
                     repeat (3) {
                         Thread.sleep(2000)
                         Interfaz.mostrarMensaje(".")
@@ -91,15 +85,15 @@ object CoffeeMachine {
                     val MilkPositive = true
                     if (MilkPositive){
                         currentState = CoffeeMachineState.checkingCup
-                        Interfaz.mostrarMensaje("Leche correcto")
+                        Interfaz.mostrarMensaje("\nLeche correcto")
                     }
                     else {
-                        currentState = CoffeeMachineState.Error("No queda Leche")
+                        currentState = CoffeeMachineState.Error("\nNo queda Leche")
                     }
                 }
 
-                is CoffeeMachineState.checkingCup {
-                    Interfaz.mostrarMensaje("Comprobando vaso")
+                is CoffeeMachineState.checkingCup ->{
+                    Interfaz.mostrarMensaje("\nComprobando vaso")
                     repeat (3) {
                         Thread.sleep(2000)
                         Interfaz.mostrarMensaje(".")
@@ -107,15 +101,15 @@ object CoffeeMachine {
                     val CupPositive = true
                     if (CupPositive){
                         currentState = CoffeeMachineState.checkingSticks
-                        Interfaz.mostrarMensaje("Vaso correcto")
+                        Interfaz.mostrarMensaje("\nVaso correcto")
                     }
                     else {
-                        currentState = CoffeeMachineState.Error("No queda vaso")
+                        currentState = CoffeeMachineState.Error("\nNo queda vaso")
                     }
                 }
 
-                is CoffeeMachineState.checkingSticks {
-                    Interfaz.mostrarMensaje("Comprobando palillo")
+                is CoffeeMachineState.checkingSticks ->{
+                    Interfaz.mostrarMensaje("\nComprobando palillo")
                     repeat (3) {
                         Thread.sleep(2000)
                         Interfaz.mostrarMensaje(".")
@@ -123,34 +117,28 @@ object CoffeeMachine {
                     val SticksPositive = true
                     if (SticksPositive){
                         currentState = CoffeeMachineState.orderCoffee
-                        Interfaz.mostrarMensaje("Palillo correcto")
+                        Interfaz.mostrarMensaje("\nPalillo correcto")
                     }
                     else {
-                        currentState = CoffeeMachineState.Error("No quedan palillos")
+                        currentState = CoffeeMachineState.Error("\nNo quedan palillos")
                     }
                 }
 
 
-                is CoffeeMachineState.orderCoffee {
-                    Interfaz.mostrarMensaje("Todo esta correcto")
-                    val CoffeeClass = (currentState as CoffeeMachineState.orderCoffee).pw
+                is CoffeeMachineState.orderCoffee ->{
+                    Interfaz.mostrarMensaje("\nTodo esta correcto")
+                    Interfaz.CoffeeType()
                 }
 
 
 
-                is CoffeeMachineState.Clean {
-                    Interfaz.mostrarMensaje("Espere porfavor...")
+                is CoffeeMachineState.Clean ->{
+                    Interfaz.mostrarMensaje("\nEspere porfavor...")
                     Thread.sleep(2000)
-                    Coffee = 300
-                    Water = 600
-                    Sugar = 200
-                    Milk = 300
-                    Sticks = 5
-                    Cup = 5
                     currentState = CoffeeMachineState.Idle
                 }
 
-                is CoffeeMachineState.Error {
+                is CoffeeMachineState.Error ->{
                     val pb = (currentState as CoffeeMachineState.Error).message
                     Interfaz.MostrarMensajeError(pb)
                     Thread.sleep(2000)
@@ -159,4 +147,6 @@ object CoffeeMachine {
             }
         }
     }
+
+
 }
